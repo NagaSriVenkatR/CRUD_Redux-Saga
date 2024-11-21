@@ -1,0 +1,71 @@
+.parent{
+  background-color: #36C1E4;
+  justify-content: center !important;
+  border-radius: 5%;
+  padding-left: 0;
+}
+.pay{
+  background-color: #FFFFFF;
+  border-top-right-radius: 10%;
+  border-bottom-right-radius: 10% ;
+}
+.signup{
+  background-color: #36C1E4;
+}
+.lorem{
+  color: #36C1E4;
+  font-size: 14px;
+}
+.circle1{
+  position: absolute;
+  border-top-right-radius: 50%;
+  border-bottom-right-radius: 50%;
+  height: 30px;
+  color: #FFFFFF;
+  background-color: #FFFFFF;
+  top: 20%;
+  left: 43%;
+}
+.circle3{
+  position: absolute;
+  border-top-right-radius: 50%;
+  border-bottom-right-radius: 50%;
+  height: 30px;
+  color: #FFFFFF;
+  background-color: #FFFFFF;
+  top: 45%;
+  left: 43%;
+}
+.circle2{
+  position: absolute;
+  border-top-right-radius: 50%;
+  border-bottom-right-radius: 50%;
+  height: 30px;
+  color: #FFFFFF;
+  background-color: #FFFFFF;
+  top: 70%;
+  left: 43%;
+}
+.name-div{
+  border-bottom: 3px solid #FFFFFF;
+  text-align: start;
+  width: 10cm;
+  margin-left: 150px;
+}
+input{
+  color: #FFFFFF;
+  background-color: #36C1E4;
+  border: none;
+  /* border-bottom: 3px solid white; */
+}
+input::placeholder{
+  color: white;
+}
+input:focus{
+  outline: none;
+  border: none;
+  /* border-bottom: 3px solid white; */
+}
+.gender{
+  height: 30px;
+}
