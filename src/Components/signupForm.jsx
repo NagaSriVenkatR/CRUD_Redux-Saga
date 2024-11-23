@@ -288,16 +288,16 @@ function SignupForm() {
   return (
     <div className="container">
       <div className="row justify-content-center">
-        <div className="d-flex col-md-10 mt-4 py-2 parent">
-          <div className="col-md-5 pay p-5">
+        <div className="d-flex col-md-12 col-xxl-10 col-lg-12 mt-4 py-md-3 parent">
+          <div className="col-md-5 pay p-xxl-5 d-none d-md-block">
             <div className="mt-5">
-              <img src={PAY} alt="" />
+              <img className="pay-image" src={PAY} alt="" />
             </div>
-            <div className="mt-5">
+            <div className="mt-5 d-none d-md-block">
               <p className="lorem text-center">
                 Lorem ipsum dolor sit amet consectetur <br />
                 adipisicing elit.aperiam in autem perferendis. <br />
-                Dolores dicta nulla modi qui odit numquam voluptate <br />{" "}
+                Dolores dicta nulla modi qui odit numquam voluptate <br />
                 itaque magni maiores, amet dicta excepturi error.
               </p>
             </div>
@@ -306,16 +306,21 @@ function SignupForm() {
                 Get Started
               </button>
             </div>
-            <div>
-              <span className="circle3">fghfgha</span>
-              <span className="circle2">fghfgha</span>
-              <span className="circle1">sdfvgaa</span>
+            <div className="d-md-block d-none">
+              <span className="circle3"></span>
+              <span className="circle2"></span>
+              <span className="circle1"></span>
             </div>
           </div>
           <div className="col-md-7 signup p-3">
-            <div className="text-start text-white ps-5 ms-5 ">
-              <h3 className="ms-5">Register</h3>
-              <p className="ms-4">
+            <div className="pay-div d-block d-md-none">
+              <span className="pay-circle">
+                <img className="pay-image" src={PAY} alt="" />
+              </span>
+            </div>
+            <div className="text-start text-white ps-md-5 ms-md-5 register ">
+              <h3 className="ms-md-5">Register</h3>
+              <p className="ms-md-4">
                 Create your account It's free and only take a minute
               </p>
             </div>
@@ -326,7 +331,7 @@ function SignupForm() {
                     <FaRegUserCircle className="text-white fs-3 name-icon" />
                   </span>
                   <input
-                    className="name ms-2"
+                    className="name ms-md-2 fw-bold"
                     type="text"
                     name="name"
                     id=""
@@ -335,97 +340,138 @@ function SignupForm() {
                     onChange={handleInputChange}
                     onBlur={handleBlur}
                   />
-                  <p className="errors text-white">{errors.name}</p>
+                  <p className="errors text-danger fw-bold">{errors.name}</p>
                 </div>
                 <div className="mb-3 name-div">
                   <BsFillTelephoneFill className="text-white fs-3" />
                   <input
-                    className="ms-2"
+                    className="ms-md-2 fw-bold"
                     type="tel"
                     name="phoneNumber"
                     id=""
                     placeholder="Phone Number"
+                    value={formData.phoneNumber}
+                    onChange={handleInputChange}
+                    onBlur={handleBlur}
                   />
-                  <p className="errors text-white">{errors.phoneNumber}</p>
+                  <p className="errors text-danger fw-bold">
+                    {errors.phoneNumber}
+                  </p>
                 </div>
                 <div className="mb-3 name-div">
                   <MdEmail className="text-white fs-3" />
                   <input
-                    className="ms-2"
+                    className="ms-md-2 fw-bold"
                     type="email"
                     name="email"
                     id=""
                     placeholder="Email"
+                    value={formData.email}
+                    onChange={handleInputChange}
+                    onBlur={handleBlur}
                   />
-                  <p className="errors text-white">{errors.email}</p>
+                  <p className="errors text-danger fw-bold">{errors.email}</p>
                 </div>
                 <div className="mb-3 name-div">
                   <FaLocationDot className="text-white fs-3" />
                   <input
-                    className="ms-2"
+                    className="ms-md-2 fw-bold"
                     type="text"
                     name="location"
                     id=""
                     placeholder="Address"
+                    value={formData.location}
+                    onChange={handleInputChange}
+                    onBlur={handleBlur}
                   />
-                  <p className="errors text-white">{errors.location}</p>
+                  <p className="errors text-danger fw-bold">
+                    {errors.location}
+                  </p>
                 </div>
                 <div className="mb-3 name-div">
                   <img className="gender" src={gender} alt="" />
-                  <select className="ms-2" name="gender" id="">
+                  <select
+                    className="ms-md-2 fw-bold"
+                    name="gender"
+                    id=""
+                    value={formData.gender}
+                    onChange={handleInputChange}
+                    onBlur={handleBlur}
+                  >
                     <option value="">Gender</option>
                     <option value="Male">Male</option>
                     <option value="Female">Female</option>
                   </select>
-                  <p className="errors text-white">{errors.gender}</p>
+                  <p className="errors text-danger fw-bold">{errors.gender}</p>
                 </div>
                 <div className="mb-3 name-div">
                   <img src={lock} alt="" />
                   <input
-                    className="ms-2"
+                    className="ms-md-2 fw-bold"
                     type="password"
                     name="password"
                     id=""
                     placeholder="Password"
+                    value={formData.password}
+                    onChange={handleInputChange}
+                    onBlur={handleBlur}
                   />
-                  <p className="errors text-white">{errors.password}</p>
+                  <p className="errors text-danger fw-bold">
+                    {errors.password}
+                  </p>
                 </div>
                 <div className="mb-3 name-div">
                   <img src={Clock} alt="" />
                   <input
-                    className="ms-2"
+                    className="ms-md-2 fw-bold"
                     type="password"
                     name="confirmPassword"
                     id=""
                     placeholder="Confirm Password"
+                    value={formData.confirmPassword}
+                    onChange={handleInputChange}
+                    onBlur={handleBlur}
                   />
-                  <p className="errors text-white">{errors.confirmPassword}</p>
+                  <p className="errors text-danger fw-bold">
+                    {errors.confirmPassword}
+                  </p>
                 </div>
                 <div className="">
-                  <label class="check-container text-white">
+                  <label className="check-container text-white">
                     I accept the terms of use and privacy policy
                     <input type="checkbox" placeholder="checkbox" />
-                    <span class="checkmark"></span>
+                    <span className="checkmark"></span>
                   </label>
                 </div>
                 <div className="">
                   <p className="text-white member">
-                    Already a memeber ?
+                    <span className="d-none d-lg-block">
+                      Already a member ?
+                    </span>
                     <a className="text-white" href="none" target="_self">
                       Signin
                     </a>
-                    <button className="btn btn-success ms-3 px-3" type="submit">
+                    <button
+                      className="btn btn-success ms-3 px-lg-3"
+                      type="submit"
+                    >
                       {buttonSignin}
                     </button>
-                    <button className='btn btn-danger ms-3 px-3' type="button" onClick={handleReset}>
+                    <button
+                      className="btn btn-danger ms-3 px-lg-4"
+                      type="button"
+                      onClick={handleReset}
+                    >
                       Reset
                     </button>
                   </p>
                 </div>
-                <div className="text-white text-center ms-5">
-                  <p className="ms-3">
-                    {" "}
-                    ________________or sign up with __________________
+                <div className="text-white text-center ">
+                  <p className="ms-3 d-none d-lg-block">
+                    _____________________or sign up with ______________________
+                  </p>
+                  <p className="d-lg-none d-block">
+                    ___________or sign up with ___________
                   </p>
                   <p className="">
                     <FcGoogle className="me-2" />

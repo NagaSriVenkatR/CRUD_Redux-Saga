@@ -28,7 +28,8 @@
   position: absolute;
   border-top-right-radius: 50%;
   border-bottom-right-radius: 50%;
-  height: 30px;
+  height: 40px;
+  width: 60px;
   color: #FFFFFF;
   background-color: #FFFFFF;
   top: 20%;
@@ -38,7 +39,8 @@
   position: absolute;
   border-top-right-radius: 50%;
   border-bottom-right-radius: 50%;
-  height: 30px;
+  height: 40px;
+  width: 60px;
   color: #FFFFFF;
   background-color: #FFFFFF;
   top: 45%;
@@ -48,7 +50,8 @@
   position: absolute;
   border-top-right-radius: 50%;
   border-bottom-right-radius: 50%;
-  height: 30px;
+  height: 40px;
+  width: 60px;
   color: #FFFFFF;
   background-color: #FFFFFF;
   top: 70%;
@@ -57,8 +60,8 @@
 .name-div{
   border-bottom: 3px solid #FFFFFF;
   text-align: start;
-  width: 10cm;
-  margin-left: 150px;
+  width: 11cm;
+  margin-left: 100px;
 }
 input{
   color: #FFFFFF;
@@ -88,7 +91,7 @@ select:focus{
   border: none;
 }
 .check-container {
-  margin-left: 4cm;
+  margin-left: 100px;
   display: block;
   position: relative;
   margin-bottom: 12px;
@@ -123,7 +126,7 @@ select:focus{
   border-radius: 3% !important;
 }
 .member{
-  margin-left: 80px
+  margin-left: 60px
 }
 .checkmark:after {
   content: "";
@@ -143,4 +146,127 @@ select:focus{
   border-radius: 3%;
   border-width: 0 3px 3px 0;
   transform: rotate(45deg);
+}
+@media screen and (min-width:1023px) and (max-width:1026px) {
+  .circle1,.circle2,.circle3{
+    left: 41%;
+  }
+  .circle1{
+    top: 15%;
+  }
+  .circle3{
+    top: 40%;
+  }
+  .circle2{
+    top: 65%;
+  }
+}
+@media screen and (min-width:1430px) and (max-width:1450px) {
+  .circle2{
+    top:35%;
+  }
+  .circle1{
+    top: 15%;
+  }
+  .circle3{
+    top: 55%;
+  }
+}
+@media screen and (min-width:750px) and (max-width:770px) {
+  .name-div{
+    width: 7cm;
+    margin-left: 70px;
+  }
+  .circle2{
+    top:55%;
+    left: 41%;
+  }
+  .circle1{
+    left: 41%;
+    top: 20%;
+  }
+  .circle3{
+    left: 41%;
+    top: 90%;
+  }
+  .member{
+  margin-left: 40px;
+  font-size: 14px;
+  }
+  .check-container{
+    margin-left: 60px;
+    font-size: 14px;
+  }
+}
+@media screen and (min-width:300px) and (max-width:450px) {
+  .parent{
+    margin-left: 20px;
+    margin-right: 20px;
+  }
+  .register{
+    margin-left: 40px;
+  }
+  .check-container{
+    margin-left: 40px;
+    font-size: 14px;
+  }
+  .name-div{
+    width: 8cm;
+    margin-left: 40px;
+  }
+  .signup{
+    border-radius: 10% !important;
+  }
+  .member{
+    margin-left: 0px;
+  }
+  .pay-image{
+    position: absolute;
+    top:4%;
+    left: 30%;
+    height: 100px;
+  }
+  .pay-div{
+    margin-bottom: 140px ;
+  }
+  .pay-circle{
+    position: absolute;
+    top: 4%;
+    left: 40%;
+    background-color: #FFFFFF;
+    height: 150px;
+    width: 200px;
+    border-bottom-left-radius: 50%;
+    border-bottom-right-radius: 50%;
+  }
+  .checkmark{
+    height: 15px;
+    width: 15px;
+  }
+  .checkmark:after{
+    left: 2px !important;
+    top: 0 !important;
+  }
+}
+@media screen and (min-width:420px) and (max-width:430px) {
+  .pay-circle{
+    left:28%;
+  }
+}
+@media screen and (min-width:300px) and (max-width:328px) {
+  .pay-circle{
+    left: 20%;
+  }
+  .name-div{
+    width: 6cm;
+    margin-left: 20px;
+  }
+  input{
+    margin-left: 0 !important;
+  }
+  .check-container{
+    margin-left: 20px !important;
+    font-size: 11px;
+  }
+  
 }
