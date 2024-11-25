@@ -12,12 +12,12 @@ import { FaLocationDot, FaSquareXTwitter } from 'react-icons/fa6';
 import { FcGoogle } from 'react-icons/fc';
 import { useDispatch, useSelector } from 'react-redux';
 import { setError, submitFormData, updateForm } from '../Redux/Action/Action';
-// import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 function SignupForm() {
     const isEditing = useSelector((state) => state.isEditing); 
     const dispatch = useDispatch();
     const errors = useSelector((state) => state.error);
-    // const navigate = useNavigate();
+    const navigate = useNavigate();
     const formData = useSelector((state) => state.formData); 
     const submittedData = useSelector((state) => state.submittedData);
     useEffect(() => {
@@ -272,7 +272,7 @@ function SignupForm() {
           dispatch(submitFormData(formData));
           console.log("Submitted Form Data: ", formData);
         }
-        // navigate("/table"); 
+        navigate("/table"); 
       }
     };
 
@@ -288,7 +288,7 @@ function SignupForm() {
   return (
     <div className="container">
       <div className="row justify-content-center">
-        <div className="d-flex col-md-12 col-xxl-10 col-lg-12 mt-4 py-md-3 parent">
+        <div className="d-flex col-md-12 col-xxl-10 col-lg-12 mt-2 py-md-3 parent">
           <div className="col-md-5 pay p-xxl-5 d-none d-md-block">
             <div className="mt-5">
               <img className="pay-image" src={PAY} alt="" />
@@ -444,21 +444,21 @@ function SignupForm() {
                   </label>
                 </div>
                 <div className="">
-                  <p className="text-white member">
-                    <span className="d-none d-lg-block">
+                  <p className="text-white member d-flex">
+                    <span className="d-none d-md-block">
                       Already a member ?
                     </span>
                     <a className="text-white" href="none" target="_self">
                       Signin
                     </a>
                     <button
-                      className="btn btn-success ms-3 px-lg-3"
+                      className="btn btn-success ms-lg-3 px-lg-3"
                       type="submit"
                     >
                       {buttonSignin}
                     </button>
                     <button
-                      className="btn btn-danger ms-3 px-lg-4"
+                      className="btn btn-danger ms-lg-3 ms-md-2 px-lg-4"
                       type="button"
                       onClick={handleReset}
                     >

@@ -126,7 +126,7 @@ select:focus{
   border-radius: 3% !important;
 }
 .member{
-  margin-left: 60px
+  margin-left: 100px
 }
 .checkmark:after {
   content: "";
@@ -176,6 +176,9 @@ select:focus{
   .name-div{
     width: 7cm;
     margin-left: 70px;
+  }
+  .member{
+    margin-left: 60px !important;
   }
   .circle2{
     top:55%;
@@ -269,4 +272,9 @@ select:focus{
     font-size: 11px;
   }
   
+}
+@media screen and (min-width:370px) and (max-width:380px) {
+  .pay-circle{
+    left: 23%;
+  }
 }
