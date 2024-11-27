@@ -1,5 +1,8 @@
-.register{
+
+.register-heading{
   background-color: #15A4FA;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
 }
 .register-table-head{
   background-color: #253E5D;
@@ -8,6 +11,20 @@
 .short{
   height: 30px;
 }
+.dash-div{
+  background-color: #21344C;
+  border-bottom: 2px solid #0393D1;
+}
 .register-table{
-  background-color: #1C324A;
+  background-color: #1C324A !important;
+  clear: both !important ;
+  color: #15A4FA !important;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  
+}
+table{
+  --bs-table-bg: none !important;
+  --bs-table-color: none !important;
+  --bs-table-striped-color : none !important;
 }

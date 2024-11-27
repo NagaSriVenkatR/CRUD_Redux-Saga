@@ -113,17 +113,17 @@ select:focus{
   width: 25px;
   background-color: #eee;
   border: 2px solid white;
-  border-radius: 3% !important;
+  border-radius: 10px !important;
 }
 .container:hover input[type=checkbox] ~ .checkmark {
   background-color: transparent;
   border: 2px solid white;
-  border-radius: 3%;
+  border-radius: 10px !important;
 }
 .container input[type=checkbox]:checked ~ .checkmark {
   background-color: transparent;
   border: 2px solid white;
-  border-radius: 3% !important;
+  border-radius: 10px !important;
 }
 .member{
   margin-left: 100px
@@ -138,12 +138,12 @@ select:focus{
 }
 .container .checkmark:after {
   left: 9px;
-  top: 5px;
+  top: 0px;
   width: 5px;
-  height: 10px;
+  height: 20px;
   border: solid white;
   border: 2px solid white;
-  border-radius: 3%;
+  border-radius: 10px !important;
   border-width: 0 3px 3px 0;
   transform: rotate(45deg);
 }

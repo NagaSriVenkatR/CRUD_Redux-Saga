@@ -48,8 +48,8 @@ function Registerdata() {
   };
   return (
     <div className="container">
-      <div className="m-2 col-md ">
-        <div className="d-flex justify-content-between register">
+      <div className="m-2 col-md parent-register">
+        <div className="d-flex justify-content-between register-heading">
           <img className="pay-image m-3" height={50} src={PAY} alt="" />
           <h1 className="text-white m-3">Registered Employees</h1>
           <span
@@ -62,48 +62,48 @@ function Registerdata() {
         </div>
         <div className="register-table">
           <div className="register-table-head d-flex justify-content-between">
-            <span>
+            <span className='dash-div px-2 pt-4'>
               <img src={dash} alt="" />
-              <p>DASHBOARD</p>
+              <p className='dash'>DASHBOARD</p>
             </span>
-            <span>
+            <span className='pt-4'>
               <img src={user} alt="" />
               <p>USERS</p>
             </span>
-            <span>
+            <span className='pt-4'>
               <img src={flag} alt="" />
               <p>PRIORITY</p>
             </span>
-            <span>
+            <span className='pt-4'>
               <img className="short" src={short} alt="" />
               <p>COLLECTIONS</p>
             </span>
-            <span>
+            <span className='pt-4'>
               <img src={fold} alt="" />
               <p>ARCHIEVED</p>
             </span>
-            <span>
+            <span className='pt-4'>
               <img src={DEL} alt="" />
               <p>DELETED</p>
             </span>
-            <span>
+            <span className='pt-4'>
               <img src={GRO} alt="" />
               <p>TRENDS</p>
             </span>
-            <span>
+            <span className='pt-4'>
               <img src={clip} alt="" />
               <p>TASKS</p>
             </span>
-            <span>
+            <span className='pt-4'>
               <img src={filt} alt="" />
               <p>FILTERS</p>
             </span>
-            <span>
+            <span className='pe-4 pt-4'>
               <img src={Stats} alt="" />
               <p>STATS</p>
             </span>
           </div>
-          <div className="register-table">
+          <div className="register-table p-5">
             <table className="table table-striped table-hover">
               <thead>
                 <tr className="">
