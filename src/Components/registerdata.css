@@ -6,7 +6,10 @@
 }
 .register-table-head{
   background-color: #253E5D;
-  color: #0393D1;
+  color: #4F6B8E;
+}
+.icon{
+  font-size: 12px;
 }
 .short{
   height: 30px;
@@ -24,7 +27,8 @@
   
 }
 table{
-  --bs-table-bg: none !important;
-  --bs-table-color: none !important;
+  --bs-table-bg: #1F3650 !important;
+  --bs-table-color: #4F6B8E !important;
   --bs-table-striped-color : none !important;
+  --bs-table-border-color: #416180 !important;
 }

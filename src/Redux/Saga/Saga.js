@@ -1,39 +1,41 @@
-import { call, put, select, takeLatest } from "redux-saga/effects";
+import { all, call, put, takeLatest } from "redux-saga/effects";
+import { createEntryAPI, deleteEntryAPI, updateEntryAPI } from "../Services/Api";
+import { deleteEntry, submitFormData } from "../Action/Action";
+import {  DELETE_ENTRY, SUBMIT_FORM_DATA, UPDATE_FORM } from "../Type/Type";
 
-const mockApiCall = (data) =>
-  new Promise((resolve) => setTimeout(() => resolve(data), 1000))
-const selectFormData = (state) => state.form.formData;
-const selectSubmittedData = (state) => state.form.submittedData;
-function* handleSubmitFormData(action){
+function* handleSubmitFormSaga(action){
   try {
-    const formData = yield select(selectFormData);
-    const response = yield call(mockApiCall,formData);
-    console.log("API response : ",response);
-    yield put({type: "SUBMIT_FORM_DATA",payload:response});
+    const response = yield call(createEntryAPI,action.payload);
+    yield put(submitFormData(response));
+    console.log("Entry created successfully:",response)
   } catch (error) {
-    console.error("Error Submitting form Data :",error);
-    yield put({type:"SET_ERROR",payload:{
-      field:"general",error:error.message
-    }
-    })
+    console.error("Error creating entry:",error.message);
   }
 }
-function* handleDeleteEntry(action){
+function* handleUpdateFormSaga(action){
   try {
-    const submittedData = yield select(selectSubmittedData);
-    yield call(mockApiCall,action.payload);
-    const updatedData = submittedData.filter((_,i)=> i !== action.payload);
-    console.log("Updated submittedData after deletion: ",updatedData);
-    yield put({type:"DELETE_ENTRY",payload:action.payload});
+    const {id,...data} = action.payload;
+    const response = yield call(updateEntryAPI,id,data);
+    yield put(submitFormData(response));
+    console.log("Entry updated successfully:",response);
   } catch (error) {
-    console.error("Error deleting Entry:",error);
-    yield put({type:"SEt_ERROR",payload:{
-      field:"general",error:error.message
-    }})
+    console.error("Error updating entry:",error.message);
   }
 }
-function* formSaga(){
-  yield takeLatest("SUBMIT_FORM_REQUEST",handleSubmitFormData);
-  yield takeLatest("Delete_ENTRY_REQUEST",handleDeleteEntry);
+function* handleDeleteFormSaga(action){
+  try {
+    const response = yield call(deleteEntryAPI,action.payload);
+    yield put(deleteEntry(action.payload));
+    console.log("Entry deleted successfully:",response);
+  } catch (error) {
+    console.error("Error deleting entry:",error.message);
+  }
 }
-export default formSaga;
+export function* formsaga() {
+  yield takeLatest(SUBMIT_FORM_DATA,handleSubmitFormSaga);
+  yield takeLatest(UPDATE_FORM,handleUpdateFormSaga);
+  yield takeLatest(DELETE_ENTRY,handleDeleteFormSaga);
+}
+export default function* rootSaga(){
+  yield all([formsaga()]);
+}

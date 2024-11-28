@@ -17,8 +17,6 @@ import user from '../Assets/group.png'
 import flag from '../Assets/red-flag.png'
 import './registerdata.css'
 import { deleteEntry, editEntry, setEditing } from '../Redux/Action/Action';
-
-
 function Registerdata() {
   const submittedData = useSelector((state) => state.submittedData);
   console.log(submittedData);
@@ -48,68 +46,71 @@ function Registerdata() {
   };
   return (
     <div className="container">
-      <div className="m-2 col-md parent-register">
-        <div className="d-flex justify-content-between register-heading">
-          <img className="pay-image m-3" height={50} src={PAY} alt="" />
-          <h1 className="text-white m-3">Registered Employees</h1>
-          <span
-            className="create m-3 px-3 fs-5 btn btn-light text-end"
-            onClick={handleNewData}
-          >
-            <IoPersonAdd className="me-2 " />
-            New Employee
-          </span>
-        </div>
-        <div className="register-table">
-          <div className="register-table-head d-flex justify-content-between">
-            <span className='dash-div px-2 pt-4'>
-              <img src={dash} alt="" />
-              <p className='dash'>DASHBOARD</p>
-            </span>
-            <span className='pt-4'>
-              <img src={user} alt="" />
-              <p>USERS</p>
-            </span>
-            <span className='pt-4'>
-              <img src={flag} alt="" />
-              <p>PRIORITY</p>
-            </span>
-            <span className='pt-4'>
-              <img className="short" src={short} alt="" />
-              <p>COLLECTIONS</p>
-            </span>
-            <span className='pt-4'>
-              <img src={fold} alt="" />
-              <p>ARCHIEVED</p>
-            </span>
-            <span className='pt-4'>
-              <img src={DEL} alt="" />
-              <p>DELETED</p>
-            </span>
-            <span className='pt-4'>
-              <img src={GRO} alt="" />
-              <p>TRENDS</p>
-            </span>
-            <span className='pt-4'>
-              <img src={clip} alt="" />
-              <p>TASKS</p>
-            </span>
-            <span className='pt-4'>
-              <img src={filt} alt="" />
-              <p>FILTERS</p>
-            </span>
-            <span className='pe-4 pt-4'>
-              <img src={Stats} alt="" />
-              <p>STATS</p>
+      <div className="m-2 row col-sm-12 parent-register">
+        <div className="d-flex justify-content-between register-heading p-3">
+          <div className=''>
+            <img className="pay-imager" height={50} src={PAY} alt="" />
+          </div>
+          <div className=''>
+            <h1 className="text-white ">Registered Employees</h1>
+          </div>
+          <div className=''>
+            <span
+              className="create px-3 fs-5 btn btn-light text-end"
+              onClick={handleNewData}
+            >
+              <IoPersonAdd className="me-2 " />
+              New Employee
             </span>
           </div>
-          <div className="register-table p-5">
-            <table className="table table-striped table-hover">
+        </div>
+        <div className="col-md-12 register-table table-responsive">
+          <div className="register-table-head d-flex justify-content-between">
+            <span className="dash-div px-2 pt-4">
+              <img src={dash} alt="" />
+              <p className="dash icon">DASHBOARD</p>
+            </span>
+            <span className="pt-4">
+              <img src={user} alt="" />
+              <p className='icon'>USERS</p>
+            </span>
+            <span className="pt-4">
+              <img src={flag} alt="" />
+              <p className='icon'>PRIORITY</p>
+            </span>
+            <span className="pt-4">
+              <img className="short" src={short} alt="" />
+              <p className='icon'>COLLECTIONS</p>
+            </span>
+            <span className="pt-4">
+              <img src={fold} alt="" />
+              <p className='icon'>ARCHIEVED</p>
+            </span>
+            <span className="pt-4">
+              <img src={DEL} alt="" />
+              <p className='icon'>DELETED</p>
+            </span>
+            <span className="pt-4">
+              <img src={GRO} alt="" />
+              <p className='icon'>TRENDS</p>
+            </span>
+            <span className="pt-4">
+              <img src={clip} alt="" />
+              <p className='icon'>TASKS</p>
+            </span>
+            <span className="pt-4">
+              <img src={filt} alt="" />
+              <p className='icon'>FILTERS</p>
+            </span>
+            <span className="pe-4 pt-4">
+              <img src={Stats} alt="" />
+              <p className='icon'>STATS</p>
+            </span>
+          </div>
+          <div className="register-table p-lg-5 p-md-3 col-md-12">
+            <table className="table table-bordered">
               <thead>
                 <tr className="">
-                  <th>
-                    <input type="checkbox" name="" id="" />
-                  </th>
                   <th>S.No</th>
                   <th>Name</th>
                   <th>Phonenumber</th>
@@ -123,9 +124,6 @@ function Registerdata() {
               <tbody>
                 {submittedData.map((data, index) => (
                   <tr key={data.id}>
-                    <td>
-                      <input type="checkbox" name="" id="" />
-                    </td>
                     <td>{index + 1}</td>
                     <td>{data.name}</td>
                     <td>{data.phoneNumber}</td>
@@ -141,7 +139,7 @@ function Registerdata() {
                         <FaUserEdit />
                       </button>
                       <button
-                        className="btn btn-warning ms-2"
+                        className="btn btn-danger ms-2"
                         onClick={() => handleDelete(index)}
                       >
                         <TiUserDelete />
