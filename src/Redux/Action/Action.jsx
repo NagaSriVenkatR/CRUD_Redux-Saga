@@ -1,4 +1,4 @@
-import { DELETE_ENTRY, EDIT_ENTRY, SET_EDITING, SET_ERROR, SUBMIT_FORM_DATA, UPDATE_FORM } from "../Type/Type";
+import { DELETE_ENTRY, EDIT_ENTRY, SET_EDITING, SET_ERROR, SET_IS_SUBMITTING, SUBMIT_FORM_DATA, UPDATE_FORM } from "../Type/Type";
 
 export const updateForm = (field, value) => ({
   type: UPDATE_FORM,
@@ -25,3 +25,9 @@ export const deleteEntry = (index) => ({
   type: DELETE_ENTRY,
   payload: index,
 });
+export const setIsSubmitting = (isSubmitting) => {
+  return {
+    type: SET_IS_SUBMITTING,
+    payload: isSubmitting,
+  };
+};

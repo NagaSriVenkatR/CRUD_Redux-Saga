@@ -7,7 +7,8 @@ const initialState = {
     phoneNumber: "",
     gender: "",
     location: "",
-    isEditing: false, 
+    isEditing: false,
+    isSubmitting: false,
     id: null,
   },
   error: {
@@ -32,14 +33,14 @@ function formReducer(state = initialState, action) {
         },
         error: {
           ...state.error,
-          [action.payload.field]: "", 
+          [action.payload.field]: "",
         },
       };
     case "ADD_ENTRY":
       if (state.formData.isEditing) return state;
       const newEntry = {
         ...action.payload,
-        id: Date.now(), 
+        id: Date.now(),
       };
 
       return {
@@ -53,6 +54,11 @@ function formReducer(state = initialState, action) {
           ...state.error,
           [action.payload.field]: action.payload.error,
         },
+      };
+    case "SET_IS_SUBMITTING":
+      return {
+        ...state,
+        isSubmitting: action.payload,
       };
     case "SET_EDITING":
       return {
@@ -73,7 +79,7 @@ function formReducer(state = initialState, action) {
         if (editIndex !== -1) {
           updatedData[editIndex] = {
             ...updatedData[editIndex],
-            ...action.payload, 
+            ...action.payload,
           };
           console.log("Updated entry:", updatedData[editIndex]);
         } else {

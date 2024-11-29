@@ -1,41 +1,66 @@
-import { all, call, put, takeLatest } from "redux-saga/effects";
-import { createEntryAPI, deleteEntryAPI, updateEntryAPI } from "../Services/Api";
-import { deleteEntry, submitFormData } from "../Action/Action";
-import {  DELETE_ENTRY, SUBMIT_FORM_DATA, UPDATE_FORM } from "../Type/Type";
-
-function* handleSubmitFormSaga(action){
+import { all, call, put, select, takeEvery, } from "redux-saga/effects";
+import axios from "axios";
+import { submitFormData, setError, deleteEntry } from "../Action/Action";
+import { SUBMIT_FORM_DATA, EDIT_ENTRY, DELETE_ENTRY } from "../Type/Type";
+const API = "https://674435e8b4e2e04abea144c6.mockapi.io/signup"; 
+function* handleSubmitFormSaga(action) {
+  const  formData  = action.payload;
+  console.log("Action payload in saga:", action.payload); 
+  console.log("FormData in saga:", formData); 
+  if (!formData) {
+    console.error("FormData is undefined in saga");
+    return;
+  }
+   const isSubmitting = yield select((state) => state.isSubmitting);
+  if (isSubmitting) {
+    console.log("Already submitting, preventing duplicate submissions.");
+    return; 
+  }
   try {
-    const response = yield call(createEntryAPI,action.payload);
-    yield put(submitFormData(response));
-    console.log("Entry created successfully:",response)
+    yield put({ type: "SET_IS_SUBMITTING", payload: true });
+   let response;
+    if (formData.isEditing) {
+      response = yield call(axios.put, `${API}/${formData.id}`, formData);
+      console.log("Updated entry successfully:", response.data);
+    } else {
+      response = yield call(axios.post, API, formData);
+      console.log("Created new entry successfully:", response.data);
+    }
+    yield put(submitFormData(response.data));
+     yield put({ type: "SET_IS_SUBMITTING", payload: false });
   } catch (error) {
-    console.error("Error creating entry:",error.message);
+    console.error("Error in form submission:", error.response?.data || error.message);
+    yield put(setError({ field: "general", error: "Error submitting the form." }));
+     yield put({ type: "SET_IS_SUBMITTING", payload: false });
   }
 }
-function* handleUpdateFormSaga(action){
+function* handleEditEntrySaga(action) {
+  const { id } = action.payload; 
   try {
-    const {id,...data} = action.payload;
-    const response = yield call(updateEntryAPI,id,data);
-    yield put(submitFormData(response));
-    console.log("Entry updated successfully:",response);
+    const response = yield call(axios.get, `${API}/${id}`); 
+    console.log("Fetched entry for editing:", response.data);
+    yield put({ type: "EDIT_ENTRY", payload: response.data }); 
   } catch (error) {
-    console.error("Error updating entry:",error.message);
+    console.error("Error fetching entry for editing:", error.response?.data || error.message);
+    yield put(setError({ field: "general", error: "Error fetching entry data." }));
   }
 }
-function* handleDeleteFormSaga(action){
+function* handleDeleteEntrySaga(action) {
+  const { id } = action.payload; 
   try {
-    const response = yield call(deleteEntryAPI,action.payload);
-    yield put(deleteEntry(action.payload));
-    console.log("Entry deleted successfully:",response);
+    yield call(axios.delete, `${API}/${id}`); 
+    console.log("Deleted entry with ID:", id);
+    yield put(deleteEntry(id)); 
   } catch (error) {
-    console.error("Error deleting entry:",error.message);
+    console.error("Error deleting entry:", error.response?.data || error.message);
+    yield put(setError({ field: "general", error: "Error deleting the entry." }));
   }
 }
-export function* formsaga() {
-  yield takeLatest(SUBMIT_FORM_DATA,handleSubmitFormSaga);
-  yield takeLatest(UPDATE_FORM,handleUpdateFormSaga);
-  yield takeLatest(DELETE_ENTRY,handleDeleteFormSaga);
+export function* formSaga() {
+  yield takeEvery(SUBMIT_FORM_DATA, handleSubmitFormSaga);
+  yield takeEvery(EDIT_ENTRY, handleEditEntrySaga);
+  yield takeEvery(DELETE_ENTRY, handleDeleteEntrySaga);
 }
-export default function* rootSaga(){
-  yield all([formsaga()]);
+export default function* rootSaga() {
+  yield all([formSaga()]);
 }

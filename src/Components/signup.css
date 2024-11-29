@@ -64,10 +64,10 @@
   margin-left: 100px;
 }
 input{
+  width: 350px !important;
   color: #FFFFFF;
   background-color: #36C1E4;
   border: none;
-  width: 200px !important;
   /* border-bottom: 3px solid white; */
 }
 input::placeholder{
