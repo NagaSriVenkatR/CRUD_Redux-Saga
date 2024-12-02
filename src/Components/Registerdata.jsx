@@ -16,26 +16,28 @@ import dash from '../Assets/speedometer .png'
 import user from '../Assets/group.png'
 import flag from '../Assets/red-flag.png'
 import './registerdata.css'
-import { deleteEntry, editEntry, setEditing } from '../Redux/Action/Action';
+import { deleteEntry, editEntry, setEditing} from '../Redux/Action/Action';
 function Registerdata() {
   const submittedData = useSelector((state) => state.submittedData);
   console.log(submittedData);
   useEffect(() => {
-    console.log("Updated Submitted Data:", submittedData);
+    console.log("Submitted form Data:", submittedData);
+    // console.log("Form Data Submitted Successfully : " , submitFormData);
   }, [submittedData]);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const handleEdit = (id) => {
-    const dataToEdit = submittedData.find((data) => data.id === id);
+  const handleEdit = (index) => {
+    console.log("Submitted data:", submittedData);
+    const dataToEdit = submittedData.find((data) => data.index === index);
 
     if (!dataToEdit) {
-      console.error("No data found for ID:", id);
+      console.error("No data found for ID:", index);
       return; // Exit if no match
     }
 
-    dispatch(editEntry(id, dataToEdit)); // Dispatch with id
+    dispatch(editEntry(dataToEdit)); // Dispatch with id
     dispatch(setEditing(true));
-    navigate(`/form?edit=${id}`); // Navigate with id
+    navigate(`/form?edit=${index}`); // Navigate with id
   };
 
   const handleDelete = (index) => {
@@ -122,9 +124,9 @@ function Registerdata() {
                 </tr>
               </thead>
               <tbody>
-                {submittedData.map((data, index) => (
+                {submittedData.map((data) => (
                   <tr key={data.id}>
-                    <td>{index + 1}</td>
+                    <td>{data.id}</td>
                     <td>{data.name}</td>
                     <td>{data.phoneNumber}</td>
                     <td>{data.email}</td>
@@ -140,7 +142,7 @@ function Registerdata() {
                       </button>
                       <button
                         className="btn btn-danger ms-2"
-                        onClick={() => handleDelete(index)}
+                        onClick={() => handleDelete(data.id)}
                       >
                         <TiUserDelete />
                       </button>

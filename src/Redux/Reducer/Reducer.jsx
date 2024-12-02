@@ -23,6 +23,7 @@ const initialState = {
   submittedData: [],
 };
 function formReducer(state = initialState, action) {
+  let counter = 1;
   switch (action.type) {
     case "UPDATE_FORM":
       return {
@@ -95,7 +96,7 @@ function formReducer(state = initialState, action) {
       } else {
         const newEntry = {
           ...action.payload,
-          id: Date.now(),
+          id: counter++,
         };
         console.log("Adding new entry:", newEntry);
         return {

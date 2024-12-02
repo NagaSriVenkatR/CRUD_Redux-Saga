@@ -21,9 +21,9 @@ export const setEditing = (isEditing) => ({
   type: SET_EDITING,
   payload: isEditing,
 });
-export const deleteEntry = (index) => ({
+export const deleteEntry = (id) => ({
   type: DELETE_ENTRY,
-  payload: index,
+  payload: id,
 });
 export const setIsSubmitting = (isSubmitting) => {
   return {

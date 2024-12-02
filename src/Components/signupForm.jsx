@@ -11,20 +11,23 @@ import { MdEmail } from 'react-icons/md';
 import { FaLocationDot, FaSquareXTwitter } from 'react-icons/fa6';
 import { FcGoogle } from 'react-icons/fc';
 import { useDispatch, useSelector } from 'react-redux';
-import { setError, setIsSubmitting, submitFormData, updateForm } from '../Redux/Action/Action';
+import { setError, submitFormData, updateForm} from '../Redux/Action/Action';
 import { useNavigate } from 'react-router-dom';
 function SignupForm() {
     const isEditing = useSelector((state) => state.isEditing); 
     const dispatch = useDispatch();
-    const isSubmitting = useSelector((state) => state.isSubmitting);
     const errors = useSelector((state) => state.error);
     const navigate = useNavigate();
     const formData = useSelector((state) => state.formData); 
     const submittedData = useSelector((state) => state.submittedData);
-    useEffect(() => {
-      console.log("Updated submittedData from Redux:", submittedData);
-      console.log("form Data :",submitFormData);
-    }, [submittedData]);
+    useEffect(
+      () => {
+        console.log("Updated submittedData from Redux:", submittedData);
+        console.log("form Data :", submitFormData);
+      },
+      [submittedData],
+      // submitFormData
+    );
     let emailPattern =
       /^([a-zA-Z0-9]+)@([a-zA-Z0-9-]+).([a-zA-Z]+).([a-zA-Z]{2,20})$/;
     let upperCasePattern = /[A-Z]/;
@@ -262,7 +265,7 @@ function SignupForm() {
       console.log("isEditing:", formData.isEditing);
       console.log("formData before submit:", formData);
       if (validateForm()) {
-        dispatch(setIsSubmitting(true));
+        // dispatch(setIsSubmitting(true));
         if (formData.isEditing) {
           dispatch(submitFormData(formData));
           console.log(
@@ -276,9 +279,10 @@ function SignupForm() {
           console.log("Submitted Form Data: ", formData);
         }
         navigate("/table"); 
-      }else{
-        dispatch(setIsSubmitting(false));
       }
+      // else{
+      //   dispatch(setIsSubmitting(false));
+      // }
     };
 
     const handleReset = () => {
@@ -459,7 +463,7 @@ function SignupForm() {
                     <button
                       className="btn btn-success ms-lg-3 px-lg-3"
                       type="submit"
-                      disabled={isSubmitting}
+                      // disabled={isSubmitting}
                     >
                       {buttonSignin}
                     </button>
